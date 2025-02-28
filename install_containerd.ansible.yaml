@@ -1,0 +1,16 @@
+---
+- hosts: all
+  gather_facts: no
+  become: yes
+  name: Install Containerd
+  tasks:
+    - name: Add Docker GPG key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+    - name: Add Docker repository to apt
+      ansible.builtin.apt_repository:
+        repo: deb https://download.docker.com/linux/debian bookworm stable
+    - name: Install containerd
+      ansible.builtin.apt:
+        name:
+          - containerd.io
