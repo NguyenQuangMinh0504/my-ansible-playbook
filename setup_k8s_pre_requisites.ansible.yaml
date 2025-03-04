@@ -1,0 +1,17 @@
+---
+- hosts: all
+  gather_facts: no
+  become: yes
+  name: Setup k8s pre requisites
+  tasks:
+    - name: enable package forwarding
+      ansible.builtin.sysctl:
+        name: net.ipv4.ip_forward
+        value: 1
+        state: present
+        reload: yes
+    - name: Enable br_netfilter
+      ansible.builtin.modprobe:
+        name: br_netfilter
+        state: present
+        persistent: present # Load the module at boot time

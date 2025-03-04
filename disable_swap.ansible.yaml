@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: no
+  become: yes
+  name: Disable swap
+  tasks:
+    - name: Disable swap
+      ansible.builtin.command:
+        cmd: swapoff -a
+        warn: no

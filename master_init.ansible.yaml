@@ -1,0 +1,9 @@
+
+---
+- hosts: all
+  gather_facts: no
+  become: yes
+  name: Setup kubeadmin
+  tasks:
+    - name: 
+      ansible.builtin.command: kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket unix:///run/containerd/containerd.sock --apiserver-advertise-address=10.32.1.82 --ignore-preflight-errors=all

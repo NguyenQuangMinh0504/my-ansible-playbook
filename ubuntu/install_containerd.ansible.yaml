@@ -1,0 +1,27 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: yes
+  name: Install Containerd on Ubuntu
+  tasks:
+    - name: Add Docker GPG key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+    - name: Add Docker repository to apt
+      ansible.builtin.apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+    - name: Install containerd
+      ansible.builtin.apt:
+        name:
+          - containerd.io
+        state: present
+    - name: Configure containerd
+      ansible.builtin.shell:
+        cmd: containerd config default > /etc/containerd/config.toml # Necessary since containerd installed by Docker have a different configuration
+    - name: Restart containerd  
+      ansible.builtin.systemd:
+        name: containerd
+        state: restarted
+    - name: Get private IP
+      ansible.builtin.debug:
+        msg: "Private IP is {{ ansible_default_ipv4.address }}"
