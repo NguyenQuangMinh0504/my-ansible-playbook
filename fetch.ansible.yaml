@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+  - name: Extract file
+    ansible.builtin.fetch:
+      src: /tmp/foo.txt
+      dest: ~/
+      flat: yes

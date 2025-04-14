@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+  - name: Extract file
+    ansible.builtin.unarchive:
+      src: ~/foo.zip
+      dest: ~/
+      remote_src: yes
