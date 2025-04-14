@@ -1,0 +1,11 @@
+- name: Initialize Kubernetes cluster
+  hosts: master
+  become: true
+  tasks:
+    - name: Initialize Kubernetes cluster using kubeadm
+      command: >
+        kubeadm init
+        --pod-network-cidr=10.244.0.0/16
+        --cri-socket=/run/containerd/containerd.sock
+        --apiserver-advertise-address=10.128.0.6
+        --ignore-preflight-errors=all

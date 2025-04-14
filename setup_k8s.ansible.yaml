@@ -4,3 +4,4 @@
 - ansible.builtin.import_playbook: ./setup_k8s_pre_requisites.ansible.yaml
 - ansible.builtin.import_playbook: ./ubuntu/install_k8s_package.ansible.yaml
 - ansible.builtin.import_playbook: ./ubuntu/install_containerd.ansible.yaml
+- ansible.builtin.import_playbook: ./init_kubeadm.ansible.yaml
