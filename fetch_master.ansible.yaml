@@ -1,0 +1,9 @@
+---
+- hosts: master
+  become: true
+  tasks:
+  - name: Extract file
+    ansible.builtin.fetch:
+      src: /etc/kubernetes/admin.conf
+      dest: ~/.kube/config
+      flat: yes

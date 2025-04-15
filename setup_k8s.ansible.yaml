@@ -5,3 +5,5 @@
 - ansible.builtin.import_playbook: ./ubuntu/install_k8s_package.ansible.yaml
 - ansible.builtin.import_playbook: ./ubuntu/install_containerd.ansible.yaml
 - ansible.builtin.import_playbook: ./init_kubeadm.ansible.yaml
+- ansible.builtin.import_playbook: ./fetch_master.ansible.yaml
+- ansible.builtin.import_playbook: ./install_flannel_cni.ansible.yaml
