@@ -2,13 +2,14 @@
 
 ---
  - name: Install gcloud CLI
-   hosts: all
+   hosts: test
    become: yes
 
    tasks:
      - name: Add Google Cloud SDK distribution URI as package source
        apt_key:
          url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+         keyring: /usr/share/keyrings/cloud.google.gpg
          state: present
 
      - name: Add Google Cloud SDK repository
