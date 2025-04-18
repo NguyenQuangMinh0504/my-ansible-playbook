@@ -1,0 +1,31 @@
+
+
+---
+ - name: Install gcloud CLI
+   hosts: all
+   become: yes
+
+   tasks:
+     - name: Add Google Cloud SDK distribution URI as package source
+       apt_key:
+         url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+         state: present
+
+     - name: Add Google Cloud SDK repository
+       apt_repository:
+         repo: "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main"
+         filename: "google-cloud-sdk"
+         state: present
+         update_cache: yes
+
+     - name: Install apt-transport-https
+       apt:
+         name: apt-transport-https
+         state: present
+         update_cache: yes
+
+     - name: Install google-cloud-sdk
+       apt:
+         name: google-cloud-sdk
+         state: present
+         update_cache: yes
