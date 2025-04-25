@@ -3,9 +3,14 @@
   become: true
   tasks:
     - name: Initialize Kubernetes cluster using kubeadm
-      command: >
+      shell: >
         kubeadm init
         --pod-network-cidr=10.244.0.0/16
         --cri-socket=/run/containerd/containerd.sock
-        --apiserver-advertise-address={{ansible_default_ipv4.address}}
+        --apiserver-advertise-address={{ ansible_default_ipv4.address }}
         --ignore-preflight-errors=all
+      register: kubeadm_output
+
+    - name: Print kubeadm init output
+      debug:
+        var: kubeadm_output.stdout_lines
