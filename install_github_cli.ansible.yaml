@@ -2,7 +2,7 @@
 
 ---
 - name: Install GitHub CLI
-  hosts: test
+  hosts: all
   become: yes
   tasks:
 
