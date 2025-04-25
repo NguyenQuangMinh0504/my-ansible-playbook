@@ -14,3 +14,12 @@
       ansible.builtin.apt:
         name:
           - containerd.io
+    - name: Create containerd config file
+      ansible.builtin.command:
+        cmd: containerd config default | tee /etc/containerd/config.toml
+      args:
+        creates: /etc/containerd/config.toml
+    - name: Restart containerd
+      ansible.builtin.systemd:
+        name: containerd
+        state: restarted
