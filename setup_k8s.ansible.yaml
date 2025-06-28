@@ -7,3 +7,4 @@
 - ansible.builtin.import_playbook: ./init_kubeadm.ansible.yaml
 - ansible.builtin.import_playbook: ./fetch_master.ansible.yaml
 - ansible.builtin.import_playbook: ./install_flannel_cni.ansible.yaml
+- ansible.builtin.import_playbook: ./join_worker.ansible.yaml
